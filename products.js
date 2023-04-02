@@ -1,4 +1,4 @@
-// const Product =require('../models/products');
+ const Product =require('../models/products');
 
 exports.getAllProducts = (req, res, next) => {
   // code to retrieve products from database or API
@@ -14,12 +14,12 @@ exports.getAllProducts = (req, res, next) => {
 exports.postAllProducts = (req, res, next) => {
 
   const product=new Product(req.body.title);
-  //  product.save();
+   product.save();
   res.redirect('/');
 };
 
 exports.getProducts = (req, res, next) => {
-  //  const products=Product.fetchAll(); 
+  Product.fetchAll((products)=>{
   res.render('shop', {
     prods: products,
     pageTitle: 'Shop',
@@ -28,4 +28,5 @@ exports.getProducts = (req, res, next) => {
     activeShop: true,
     productCSS: true
   });
+}); 
 };
